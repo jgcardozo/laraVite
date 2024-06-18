@@ -1,0 +1,79 @@
+@baseUrl = http://localhost
+
+
+### listing of all 
+GET {{baseUrl}}/api/customer
+Content-Type: application/json
+Accept: application/json
+
+#### post store customer
+POST {{baseUrl}}/api/customer
+Content-Type: application/json
+Accept: application/json
+
+{
+    "name":"cristiano ronaldo",
+    "email":"ronaldo3@gmail.com",
+    "address":"calle 55a"  
+}
+
+#### UPDATE customer
+PUT {{baseUrl}}/api/customer/102
+Content-Type: application/json
+Accept: application/json
+
+{
+    "name":"cristiano ronaldo 33",
+    "email":"ronaldo3@gmail.com",
+    "address":"calle 33"
+}
+
+#### UPDATE customer partially
+PATCH {{baseUrl}}/api/customer/103
+Content-Type: application/json
+Accept: application/json
+
+{
+    "address":"carrera 85",
+    "name":"armando reyes"
+}
+
+### delete customer
+DELETE {{baseUrl}}/api/customer/102
+Content-Type: application/json
+Accept: application/json
+
+
+
+
+
+
+
+#############  lgin
+# @name login
+POST {{baseUrl}}/api/register
+Accept: application/json
+
+{
+    "name": "juan cardozo",
+    "email": "juan7@gmail.com",
+    "password" :"12345678" 
+}
+
+@accessToken = {{login.response.body.token}}
+
+#### post store customer
+POST {{baseUrl}}/api/customer
+Content-Type: application/json
+Accept: application/json
+
+{
+    "name": "cristiano ronaldo",
+    "email": "ronaldo@gmail.com",
+    "address": "calle 55a"  
+}
+
+### users - protected
+GET {{baseUrl}}/api/user
+Accept: application/json
+Authorization: Bearer {{accessToken}}
